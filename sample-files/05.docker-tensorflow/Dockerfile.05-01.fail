@@ -1,0 +1,10 @@
+FROM tensorflow/tensorflow:latest-py3-jupyter@sha256:875bc50785ee24c69b8dbc3700bb090d5c126458d4a1d761aada539124adbcbc
+
+RUN apt update \
+      && apt install --assume-yes --no-install-recommends build-essential git ssh-client \
+      && mkdir -p /root/.ssh \
+      && ssh-keyscan -H github.com >> /root/.ssh/known_hosts \
+      && git clone git@github.com:mazgi-sandbox/piphello.git \
+      && pip install --editable ./piphello \
+      && apt clean \
+      && rm -rf /var/lib/apt/lists/*

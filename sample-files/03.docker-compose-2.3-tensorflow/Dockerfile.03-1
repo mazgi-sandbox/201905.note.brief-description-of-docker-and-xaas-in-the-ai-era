@@ -1,0 +1,3 @@
+FROM tensorflow/tensorflow:latest-py3-jupyter@sha256:875bc50785ee24c69b8dbc3700bb090d5c126458d4a1d761aada539124adbcbc
+
+RUN pip install Flask

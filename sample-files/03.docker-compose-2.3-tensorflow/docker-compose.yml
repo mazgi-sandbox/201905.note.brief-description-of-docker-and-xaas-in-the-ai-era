@@ -1,0 +1,9 @@
+version: '2.3'
+services:
+  tensorflow:
+    build:
+      context: .
+      dockerfile: Dockerfile.03-1
+      # dockerfile: Dockerfile.03-2
+    ports:
+      - 8888:8888

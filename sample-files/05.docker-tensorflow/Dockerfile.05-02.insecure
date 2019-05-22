@@ -1,0 +1,12 @@
+FROM tensorflow/tensorflow:latest-py3-jupyter@sha256:875bc50785ee24c69b8dbc3700bb090d5c126458d4a1d761aada539124adbcbc
+
+COPY .ssh/deploy-key.id_rsa /root/.ssh/id_rsa
+
+RUN apt update \
+      && apt install --assume-yes --no-install-recommends build-essential git ssh-client \
+      && ssh-keyscan -H github.com >> /root/.ssh/known_hosts \
+      && git clone git@github.com:mazgi-sandbox/piphello.git \
+      && pip install --editable ./piphello \
+      && rm -f /root/.ssh/id_rsa \
+      && apt clean \
+      && rm -rf /var/lib/apt/lists/*
